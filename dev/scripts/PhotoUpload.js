@@ -106,7 +106,7 @@ componentDidMount() {
                 { this.state.photoURL !== '' 
                 ? <div className="photoUploaded">
                     <img src={this.state.photoURL} />
-                    <button onClick={this.handleSaveImage}>Save</button>
+                        <button onClick={this.handleSaveImage}><i className="fas fa-upload"></i></button>
                 </div>
                 : null}
                 <label className="btn-uploadPhoto">Upload Idea

@@ -91,6 +91,7 @@ class UserSignIn extends React.Component {
             .then((user) => {
                 console.log(user);
             })
+
     }
 
     signOut() {
@@ -127,6 +128,7 @@ class UserSignIn extends React.Component {
                         </ul>
                     }       
                 </nav>
+
                 
                 <form className="form-createUser" onSubmit={(e) => this.createUser(e)} ref={ref => this.createPopup = ref}>
                     <button onClick={this.createShow} className="exit-form"><i className="far fa-times-circle"></i></button>

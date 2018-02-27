@@ -9,8 +9,15 @@ html {
 body {
     font-family: 'Nunito', sans-serif;
     font-size:1.6rem;
-    
 }
+.background {
+    height:100vh;
+    width:100%;
+    background-size:cover;
+    background-position:center;
+    background-image:linear-gradient(to bottom, rgba(255,255,255,0.8),rgba(255,255,255,1)80%), url('../assets/sweet-ice-cream-photography-435349-unsplash.jpg');
+}
+
 
 // General Styles
 h2 {
@@ -40,6 +47,7 @@ button {
     width:80%;
 }
 
+
 // Main Splash Page
 .splashPage {
     @media (max-width:555px) {
@@ -47,7 +55,7 @@ button {
     }
     h1 {
         line-height:1;
-        font-size:10rem;
+        font-size:9rem;
         margin:0;
         &:first-child {
             padding-top:150px;
@@ -78,10 +86,16 @@ nav {
         display:flex;
         justify-content: space-between;
         align-items: center;
+        @media (max-width:468px) {
+            flex-direction:column;
+        }
         h2 {    
             letter-spacing:1px;
-            font-size: 3.5rem;
-            color:rgb(99, 99, 99);
+            font-size: 4rem;
+            color:black;
+            @media (max-width:468px) {
+                text-align:center;
+            }            
         }
     }
     ul {
@@ -105,8 +119,9 @@ nav {
             }  
         }
         a {
+            background:rgba(255,255,255,0.5);
             border-radius:30px;
-            border:1px solid rgb(175, 2, 117);
+            border:2px solid rgb(175, 2, 117);
             padding: 15px 35px;
             color: rgb(175, 2, 117);
             text-decoration:none;
@@ -142,16 +157,33 @@ nav {
 
 
 // Add a Person Card
+
+.icon-add {
+    position:fixed;
+    right:30px;
+    bottom:30px;
+    font-size:4.5rem;
+    z-index:15;
+    color:rgba(0,0,0,0.6);
+    transition:all 0.5s ease;
+    &:hover {
+        color:rgba(0, 0, 0, 0.8);     
+    }
+}
+
 .form-addPersonCard {
     position:fixed;
     opacity:0;
     visibility: hidden;
-    z-index:2;
+    z-index:10;
     background:white;
     padding:20px 30px;
     border-radius:25px;
-    max-width:380px;
+    width:380px;
     box-shadow: 0px 11px 51px 6px #d0d0d0;
+    @media (max-width:468px) {
+        width:300px;
+    }
     h3 {
         text-align:center;
         line-height:1.5;
@@ -195,6 +227,7 @@ nav {
         font-size:3.5rem;
         background:transparent;
         color:rgb(175, 99, 122);
+        transition:all 0.5s ease;
         &:hover {
             color:rgb(138, 58, 72);
         }
@@ -217,6 +250,7 @@ nav {
     justify-content: space-between;
     flex-wrap:wrap;
     .personCard {
+        background:white;
         flex:1 0 300px;
         border-radius:10px;
         box-shadow: 0px 0px 59px -14px rgba(0,0,0,0.69);
@@ -285,32 +319,34 @@ nav {
         display: inline-block;
         cursor:pointer;
         text-transform: uppercase;
+        transition:all 0.5s ease;
         &:hover {
             color:white;
             background:rgb(175, 2, 117);
         }
-        .photoUploaded {
-            width:200px;
-            height:200px;
-            img {
-                width:100%;
-                max-height:200px;
+    }
+    .photoUploaded {
+        width:200px;
+        margin:0 auto;
+        button {            
+            border-radius:50%;               
+            position:relative;
+            left:50%;
+            transform: translateX(-50%);
+            padding:10px;
+            transition:all 0.5s ease;
+            &:hover {
+                color:rgb(175, 2, 117);
             }
+        }
+        img {
+            max-height:200px;
+            width:100%;
+            object-fit:cover;
         }
     }
 }
 
-
-.icon-add {
-    position:fixed;
-    right:30px;
-    bottom:30px;
-    font-size:4.5rem;
-    color:rgba(0,0,0,0.6);
-    &:hover {
-        color:rgba(0, 0, 0, 0.8);     
-    }
-}
 
 // Sign-In & Create User Form
 .form-createUser, .form-signIn {
@@ -363,12 +399,23 @@ nav {
     }
 }
 
+.logGroup {
+    display:flex;
+}
+
 .form-createUser {
     .logGroup {
         justify-content:center;
     }
 }
 
+.form-signIn {
+    .logGroup {
+        padding:20px 0;
+        justify-content:space-between;
+        flex-direction: row-reverse;
+    }
+}
 .btn-google {
     font-size:1.6rem;
     font-weight:700;
@@ -378,6 +425,7 @@ nav {
     cursor:pointer;
     text-transform: uppercase;
     line-height:1;
+    transition:all 0.5s ease;
     &:hover {
         color:white;
     }
@@ -390,4 +438,6 @@ nav {
     top:50%;
     transform: translate(-50%,-50%);
     visibility: visible;
+    
+            transition:all 0.5s ease;
 }

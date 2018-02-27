@@ -23,8 +23,6 @@ class App extends React.Component {
       birthday: '',
       interests: '',
       loggedIn: false,
-      photoURL: '',
-      photos: [],
       isButtonDisabled: false,
     };
     this.handleChange = this.handleChange.bind(this);
@@ -127,34 +125,35 @@ class App extends React.Component {
           <h1>Gift Good</h1>
           <div className="splashCaption">
             <p>Make gifts as great as the people in your life are.</p>
-            <p>Take personal notes of ideas when they come up!</p>
+            <p>Make notes when the special gift idea comes up!</p>
           </div>
         </div>
       );  
     }
-
     return (
       <div>
-        <header>
-          <div className="wrapper">
-            <UserSignIn />
-            { this.state.loggedIn 
-            ? <div>
-                <a href="" onClick={this.showAddPerson} className="icon-add"><i className="fas fa-plus-circle"></i></a>
-              </div>
-            : null}
-            {inputForm}
-          </div>
-        </header>
-        <main>
-          <div className="wrapper">
-            <section className="peopleCards">
-              {this.state.people.map((person) => {
-                return <PersonCard data={person} key={person.key} remove={this.removePerson} personIndex={person.key} />
-              })}
-            </section>
-          </div>
-        </main>
+        <div className="background">
+          <header>
+            <div className="wrapper">
+              <UserSignIn />
+              { this.state.loggedIn 
+              ? <div>
+                  <a href="" onClick={this.showAddPerson} className="icon-add"><i className="fas fa-plus-circle"></i></a>
+                </div>
+              : null}
+              {inputForm}
+            </div>
+          </header>
+          <main>
+            <div className="wrapper">
+              <section className="peopleCards">
+                {this.state.people.map((person) => {
+                  return <PersonCard data={person} key={person.key} remove={this.removePerson} personIndex={person.key} />
+                })}
+              </section>
+            </div>
+          </main>
+        </div>
       </div>
     )
   }
