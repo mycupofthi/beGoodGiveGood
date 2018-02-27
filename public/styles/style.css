@@ -1,0 +1,485 @@
+article, aside, details, figcaption, figure, footer, header, hgroup, nav, section, summary {
+  display: block; }
+
+audio, canvas, video {
+  display: inline-block; }
+
+audio:not([controls]) {
+  display: none;
+  height: 0; }
+
+[hidden] {
+  display: none; }
+
+html {
+  font-family: sans-serif;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%; }
+
+a:focus {
+  outline: thin dotted; }
+
+a:active, a:hover {
+  outline: 0; }
+
+h1 {
+  font-size: 2em; }
+
+abbr[title] {
+  border-bottom: 1px dotted; }
+
+b, strong {
+  font-weight: 700; }
+
+dfn {
+  font-style: italic; }
+
+mark {
+  background: #ff0;
+  color: #000; }
+
+code, kbd, pre, samp {
+  font-family: monospace, serif;
+  font-size: 1em; }
+
+pre {
+  white-space: pre-wrap;
+  word-wrap: break-word; }
+
+q {
+  quotes: \201C \201D \2018 \2019; }
+
+small {
+  font-size: 80%; }
+
+sub, sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline; }
+
+sup {
+  top: -.5em; }
+
+sub {
+  bottom: -.25em; }
+
+img {
+  border: 0; }
+
+svg:not(:root) {
+  overflow: hidden; }
+
+fieldset {
+  border: 1px solid silver;
+  margin: 0 2px;
+  padding: .35em .625em .75em; }
+
+button, input, select, textarea {
+  font-family: inherit;
+  font-size: 100%;
+  margin: 0; }
+
+button, input {
+  line-height: normal; }
+
+button, html input[type=button], input[type=reset], input[type=submit] {
+  -webkit-appearance: button;
+  cursor: pointer; }
+
+button[disabled], input[disabled] {
+  cursor: default; }
+
+input[type=checkbox], input[type=radio] {
+  box-sizing: border-box;
+  padding: 0; }
+
+input[type=search] {
+  -webkit-appearance: textfield;
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box; }
+
+input[type=search]::-webkit-search-cancel-button, input[type=search]::-webkit-search-decoration {
+  -webkit-appearance: none; }
+
+textarea {
+  overflow: auto;
+  vertical-align: top; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+body, figure {
+  margin: 0; }
+
+legend, button::-moz-focus-inner, input::-moz-focus-inner {
+  border: 0;
+  padding: 0; }
+
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: '';
+  clear: both;
+  height: 0; }
+
+* {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box; }
+
+html {
+  font-size: 62.5%; }
+
+body {
+  font-family: 'Nunito', sans-serif;
+  font-size: 1.6rem; }
+
+.background {
+  height: 100vh;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.8), white 80%), url("../assets/sweet-ice-cream-photography-435349-unsplash.jpg"); }
+
+h2 {
+  font-size: 3rem; }
+
+ul {
+  padding: 0; }
+  ul li {
+    list-style: none; }
+
+button {
+  background: none;
+  border-style: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  border-radius: 0;
+  -moz-border-radius: 0;
+  -webkit-border-radius: 0; }
+
+.wrapper {
+  margin: 0 auto;
+  max-width: 1080px;
+  width: 80%; }
+
+@media (max-width: 555px) {
+  .splashPage {
+    text-align: center; } }
+
+.splashPage h1 {
+  line-height: 1;
+  font-size: 9rem;
+  margin: 0; }
+  .splashPage h1:first-child {
+    padding-top: 150px;
+    font-size: 8rem; }
+    @media (max-width: 555px) {
+      .splashPage h1:first-child {
+        padding-top: 100px;
+        font-size: 5rem; } }
+  @media (max-width: 555px) {
+    .splashPage h1 {
+      font-size: 6rem; } }
+
+.splashPage .splashCaption {
+  padding: 10px; }
+  .splashPage .splashCaption p {
+    font-size: 2.5rem;
+    margin: 0; }
+
+nav {
+  border-bottom: 2px solid #af0275;
+  padding: 20px 0; }
+  nav .splashPage-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; }
+    @media (max-width: 468px) {
+      nav .splashPage-header {
+        flex-direction: column; } }
+    nav .splashPage-header h2 {
+      letter-spacing: 1px;
+      font-size: 4rem;
+      color: black; }
+      @media (max-width: 468px) {
+        nav .splashPage-header h2 {
+          text-align: center; } }
+  nav ul {
+    display: flex;
+    justify-content: flex-end; }
+    @media (max-width: 480px) {
+      nav ul {
+        justify-content: space-around; } }
+    nav ul li {
+      margin-left: 25px;
+      font-size: 2rem;
+      padding-bottom: 5px;
+      font-size: 1.6rem;
+      font-weight: 700;
+      display: inline-block;
+      cursor: pointer;
+      text-transform: uppercase; }
+      @media (max-width: 480px) {
+        nav ul li {
+          margin-left: 0; } }
+    nav ul a {
+      background: rgba(255, 255, 255, 0.5);
+      border-radius: 30px;
+      border: 2px solid #af0275;
+      padding: 15px 35px;
+      color: #af0275;
+      text-decoration: none;
+      transition: all 0.5s ease; }
+      nav ul a:hover {
+        background: #af0275;
+        color: white; }
+  nav .signOut {
+    display: flex;
+    justify-content: flex-end; }
+    nav .signOut .btn-signOut {
+      padding-bottom: 5px;
+      font-size: 1.6rem;
+      font-weight: 700;
+      border-radius: 30px;
+      color: #af0275;
+      display: inline-block;
+      cursor: pointer;
+      border: 1px solid #af0275;
+      padding: 15px 35px;
+      text-transform: uppercase;
+      transition: all 0.5s ease; }
+      nav .signOut .btn-signOut:hover {
+        background: #af0275;
+        color: white; }
+
+.icon-add {
+  position: fixed;
+  right: 30px;
+  bottom: 30px;
+  font-size: 4.5rem;
+  z-index: 15;
+  color: rgba(0, 0, 0, 0.6);
+  transition: all 0.5s ease; }
+  .icon-add:hover {
+    color: rgba(0, 0, 0, 0.8); }
+
+.form-addPersonCard, .form-createUser, .form-signIn {
+  position: fixed;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 10;
+  background: white;
+  padding: 20px 30px;
+  border-radius: 25px;
+  width: 380px;
+  box-shadow: 0px 11px 51px 6px #d0d0d0; }
+  @media (max-width: 468px) {
+    .form-addPersonCard, .form-createUser, .form-signIn {
+      width: 300px; } }
+  .form-addPersonCard h3, .form-createUser h3, .form-signIn h3 {
+    text-align: center;
+    line-height: 1.5; }
+  .form-addPersonCard .inputGroup, .form-createUser .inputGroup, .form-signIn .inputGroup {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    padding-bottom: 20px; }
+  .form-addPersonCard label, .form-createUser label, .form-signIn label {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #7c7c7c;
+    text-align: left;
+    padding: 5px 0 10px;
+    margin-right: 10px; }
+  .form-addPersonCard input, .form-createUser input, .form-signIn input, .form-addPersonCard textarea, .form-createUser textarea, .form-signIn textarea, .form-addPersonCard .submit, .form-createUser .submit, .form-signIn .submit {
+    border-style: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    border-radius: 0;
+    -moz-border-radius: 0;
+    -webkit-border-radius: 0;
+    padding-bottom: 5px; }
+  .form-addPersonCard input[type=text], .form-createUser input[type=text], .form-signIn input[type=text], .form-addPersonCard input[type=date], .form-createUser input[type=date], .form-signIn input[type=date] {
+    border-bottom: 1px solid darkgrey; }
+  .form-addPersonCard textarea, .form-createUser textarea, .form-signIn textarea {
+    background: rgba(216, 216, 216, 0.7);
+    border-radius: 10px;
+    padding: 10px; }
+  .form-addPersonCard .submit, .form-createUser .submit, .form-signIn .submit {
+    cursor: pointer;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 3.5rem;
+    background: transparent;
+    color: #af637a;
+    transition: all 0.5s ease; }
+    .form-addPersonCard .submit:hover, .form-createUser .submit:hover, .form-signIn .submit:hover {
+      color: #8a3a48; }
+
+.form-addPersonCard.show, .show.form-createUser, .show.form-signIn {
+  opacity: 1;
+  visibility: visible;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%); }
+
+.peopleCards {
+  padding-top: 30px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap; }
+  .peopleCards .personCard {
+    background: white;
+    flex: 1 0 300px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 59px -14px rgba(0, 0, 0, 0.69);
+    padding: 20px;
+    margin: 10px;
+    position: relative;
+    border-radius: 20px; }
+    .peopleCards .personCard h2.personCard-name {
+      text-transform: capitalize;
+      font-size: 2.5rem;
+      letter-spacing: 1.1px;
+      position: relative;
+      margin-bottom: 10px; }
+    .peopleCards .personCard h3 {
+      font-size: 1.6rem;
+      margin-bottom: 0px;
+      color: #979797; }
+    .peopleCards .personCard li:first-letter {
+      text-transform: uppercase; }
+    .peopleCards .personCard p {
+      margin: 0; }
+    .peopleCards .personCard .remove-btn {
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      border: none;
+      background-image: none;
+      background-color: transparent;
+      box-shadow: none;
+      font-size: 2.5rem;
+      color: rgba(221, 3, 3, 0.281); }
+      .peopleCards .personCard .remove-btn:hover {
+        color: rgba(70, 1, 1, 0.5); }
+  .peopleCards .personCard-general {
+    display: flex; }
+    .peopleCards .personCard-general .personCard-photo img {
+      border-radius: 50%; }
+    .peopleCards .personCard-general .personCard-bg {
+      padding-left: 10px; }
+  .peopleCards .personCard-info {
+    margin-bottom: 10px; }
+  .peopleCards .btn-uploadPhoto {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 1px solid #af0275;
+    font-size: 1.3rem;
+    font-weight: 700;
+    border-radius: 30px;
+    color: black;
+    padding: 15px 35px;
+    margin: 10px 0;
+    display: inline-block;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.5s ease; }
+    .peopleCards .btn-uploadPhoto:hover {
+      color: white;
+      background: #af0275; }
+  .peopleCards .photoUploaded {
+    width: 200px;
+    margin: 0 auto; }
+    .peopleCards .photoUploaded button {
+      border-radius: 50%;
+      position: relative;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 10px;
+      transition: all 0.5s ease; }
+      .peopleCards .photoUploaded button:hover {
+        color: #af0275; }
+    .peopleCards .photoUploaded img {
+      max-height: 200px;
+      width: 100%;
+      object-fit: cover; }
+
+.form-createUser, .form-signIn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 300px;
+  z-index: 10; }
+  .form-createUser h2, .form-signIn h2 {
+    font-size: 2.5rem; }
+  .form-createUser .inputGroup, .form-signIn .inputGroup {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    padding-bottom: 20px; }
+    .form-createUser .inputGroup label, .form-signIn .inputGroup label {
+      padding-bottom: 5px; }
+    .form-createUser .inputGroup input, .form-signIn .inputGroup input {
+      display: block; }
+    .form-createUser .inputGroup input[type="password"], .form-signIn .inputGroup input[type="password"] {
+      border-bottom: 1px solid darkgrey; }
+  .form-createUser input[type=submit], .form-signIn input[type=submit] {
+    font-size: 1.5rem;
+    font-weight: 700;
+    border-radius: 25px;
+    color: #af0275;
+    display: inline-block;
+    cursor: pointer;
+    border: 1px solid #af0275;
+    padding: 15px;
+    text-transform: uppercase;
+    line-height: 1;
+    background: white;
+    transition: all 0.5s ease; }
+    .form-createUser input[type=submit]:hover, .form-signIn input[type=submit]:hover {
+      background: #af0275;
+      color: white; }
+  .form-createUser .exit-form, .form-signIn .exit-form {
+    float: right;
+    color: #5e5e5e;
+    padding: 0; }
+
+.logGroup {
+  display: flex; }
+
+.form-createUser .logGroup {
+  justify-content: center; }
+
+.form-signIn .logGroup {
+  padding: 20px 0;
+  justify-content: space-between;
+  flex-direction: row-reverse; }
+
+.btn-google {
+  font-size: 1.6rem;
+  font-weight: 700;
+  border-radius: 50%;
+  color: #af0275;
+  display: inline-block;
+  cursor: pointer;
+  text-transform: uppercase;
+  line-height: 1;
+  transition: all 0.5s ease; }
+  .btn-google:hover {
+    color: white; }
+
+.show {
+  opacity: 1;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  visibility: visible;
+  transition: all 0.5s ease; }
