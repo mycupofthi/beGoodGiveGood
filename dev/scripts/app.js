@@ -22,6 +22,7 @@ class App extends React.Component {
       name: '',
       birthday: '',
       interests: '',
+      photos: [],
       loggedIn: false,
       isButtonDisabled: false,
     };

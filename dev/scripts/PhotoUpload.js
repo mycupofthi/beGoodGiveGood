@@ -27,43 +27,23 @@ class PhotoUpload extends React.Component {
     }
 
 componentDidMount() {
-    firebase.auth().onAuthStateChanged((user) => {
-        if (user) {
-            const userId = firebase.auth().currentUser.uid;
-            const dbRef = firebase.database().ref(`/users/${userId}/people/${this.props.data.personIndex}/photos`);
-            dbRef.on('value', (firebaseData) => {
-                const photoArray = [];
-                const data = firebaseData.val();
-                console.log(data)
-                this.setState({
-                    photos: this.state.photoURL
-                })
-                // for (let i = 0; i < photoArray.length; i++) {
-                //     this.setState({
-                //         photos: photoArray
-                //     })
-                // }
-                // for (let personKey in data) {
-                //     data[personKey] = personKey;
-                //     photoArray.push(data[personKey])
-                // }
-                // this.setState({
-                //     photos: photoArray,
-                //     loggedIn: true,
-                //     // photos: peopleArray[i].photos
-                // });
-                // console.log(photoArray)
-                // console.log(peopleArray);
-                // console.log(peopleArray[0].photos)
 
-            });
-        } else {
-            this.setState({
-                photos: [],
-                loggedIn: false
-            })
-        }
+    const userId = firebase.auth().currentUser.uid;
+    const dbRef = firebase.database().ref(`/users/${userId}/people/${this.props.data.personIndex}/photos`);
+    dbRef.on('value', (firebaseData) => {
+        const photoArray = [];
+        const data = firebaseData.val();
+
+        for (let i = 0; i < photoArray.length; i++) {
+            const photodata = data[i];
+                photoArray.push(photodata)
+        };
+
+        this.setState({
+            photos: photoArray
+        })
     });
+
 }
 
     handleProgress(progress) {
