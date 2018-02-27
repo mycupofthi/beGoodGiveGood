@@ -6,11 +6,32 @@ html {
     font-size:62.5%;
 }
 
+body {
+    font-family: 'Nunito', sans-serif;
+    font-size:1.6rem;
+    
+}
+
+// General Styles
+h2 {
+    font-size:3rem;
+}
+
 ul {
     padding:0;
     li {
         list-style: none;
     }
+}
+
+button {
+    background:none;
+    border-style:none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    border-radius: 0;
+    -moz-border-radius: 0;
+    -webkit-border-radius: 0;
 }
 
 .wrapper {
@@ -19,13 +40,354 @@ ul {
     width:80%;
 }
 
-.peopleCards {
-    display:flex;
-    justify-content: space-around;
+// Main Splash Page
+.splashPage {
+    @media (max-width:555px) {
+        text-align:center;
+    }
+    h1 {
+        line-height:1;
+        font-size:10rem;
+        margin:0;
+        &:first-child {
+            padding-top:150px;
+            font-size:8rem;
+            @media (max-width:555px) {
+                padding-top:100px;
+                font-size:5rem;
+            }
+        }
+        @media (max-width:555px) {
+            font-size:6rem;
+        }
+    }
+    .splashCaption {
+        padding:10px;
+        p {
+            font-size:2.5rem;
+            margin:0;
+        }
+    }
 }
 
-.personCard {
-    border:1px solid black;
-    padding:20px;   
-    width:200px;
+// Top Navigation
+nav {
+    border-bottom:2px solid rgb(175, 2, 117);
+    padding:20px 0;
+    .splashPage-header {
+        display:flex;
+        justify-content: space-between;
+        align-items: center;
+        h2 {    
+            letter-spacing:1px;
+            font-size: 3.5rem;
+            color:rgb(99, 99, 99);
+        }
+    }
+    ul {
+        display:flex;
+        justify-content: flex-end;
+        @media (max-width:480px) {
+            justify-content: space-around;
+
+        }
+        li {
+            margin-left:25px;
+            font-size:2rem;
+            padding-bottom:5px;
+            font-size:1.6rem;
+            font-weight:700;
+            display: inline-block;
+            cursor:pointer;
+            text-transform: uppercase;    
+            @media (max-width:480px) {
+                margin-left:0;
+            }  
+        }
+        a {
+            border-radius:30px;
+            border:1px solid rgb(175, 2, 117);
+            padding: 15px 35px;
+            color: rgb(175, 2, 117);
+            text-decoration:none;
+            transition:all 0.5s ease;
+            &:hover {
+                background:rgb(175, 2, 117);
+                color:white;
+            }
+        }
+    }
+    .signOut {
+        display:flex;
+        justify-content: flex-end;
+        .btn-signOut {
+            padding-bottom:5px;
+            font-size:1.6rem;
+            font-weight:700;
+            border-radius:30px;
+            color: rgb(175, 2, 117);
+            display: inline-block;
+            cursor:pointer;
+            border:1px solid rgb(175, 2, 117);
+            padding: 15px 35px;
+            text-transform: uppercase;
+            transition:all 0.5s ease;
+            &:hover {
+                background:rgb(175, 2, 117);
+                color:white;
+            }
+        }
+    }
+}
+
+
+// Add a Person Card
+.form-addPersonCard {
+    position:fixed;
+    opacity:0;
+    visibility: hidden;
+    z-index:2;
+    background:white;
+    padding:20px 30px;
+    border-radius:25px;
+    max-width:380px;
+    box-shadow: 0px 11px 51px 6px #d0d0d0;
+    h3 {
+        text-align:center;
+        line-height:1.5;
+    }
+    .inputGroup {
+        display:flex;
+        justify-content: space-between;
+        flex-direction:column;
+        padding-bottom:20px;
+    }
+    label {
+        font-size:1.8rem;
+        font-weight:700;
+        color:rgb(124, 124, 124);
+        text-align: left;
+        padding:5px 0 10px;
+        margin-right:10px;
+    }
+    input, textarea, .submit {
+        border-style:none;
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        border-radius: 0;
+        -moz-border-radius: 0;
+        -webkit-border-radius: 0;
+        padding-bottom:5px;
+    }
+    input[type=text], input[type=date] {
+        border-bottom:1px solid darkgrey;
+    }
+    textarea {
+        background: rgba(216, 216, 216, 0.7);
+        border-radius:10px;
+        padding:10px;
+    }
+    .submit {
+        cursor: pointer;
+        position:relative;
+        left:50%;
+        transform: translateX(-50%);
+        font-size:3.5rem;
+        background:transparent;
+        color:rgb(175, 99, 122);
+        &:hover {
+            color:rgb(138, 58, 72);
+        }
+        
+    }
+}
+.form-addPersonCard.show {
+    opacity:1;
+    visibility: visible;
+    left:50%;
+    top:50%;
+    transform: translate(-50%,-50%);
+}
+
+
+// People Cards
+.peopleCards {
+    padding-top:30px;
+    display:flex;
+    justify-content: space-between;
+    flex-wrap:wrap;
+    .personCard {
+        flex:1 0 300px;
+        border-radius:10px;
+        box-shadow: 0px 0px 59px -14px rgba(0,0,0,0.69);
+        padding:20px;   
+        margin:10px;
+        position:relative;
+        border-radius:20px;
+        h2.personCard-name {
+            text-transform: capitalize;
+            font-size:2.5rem;
+            letter-spacing:1.1px;
+            position:relative;
+            margin-bottom:10px;
+        }
+        h3 {
+            font-size:1.6rem;
+            margin-bottom:0px;
+            color:rgb(151, 151, 151);
+        }
+        li {
+            &:first-letter {
+            text-transform: uppercase;
+            }
+        }
+        p {
+            margin:0;
+        }
+        .remove-btn {
+            position:absolute;
+            right:20px;
+            top:20px;
+            border:none;
+            background-image:none;
+            background-color:transparent;
+            box-shadow: none;
+            font-size:2.5rem;
+            color:rgba(221, 3, 3, 0.281);
+            &:hover {
+                color:darken(rgba(221, 3, 3, 0.5), 30);
+            }
+        }
+    }
+    .personCard-general {
+        display:flex;
+        .personCard-photo img {
+            border-radius:50%;
+        }
+        .personCard-bg {
+            padding-left:10px;
+        }
+    }
+    .personCard-info {
+        margin-bottom:10px;
+    }
+    .btn-uploadPhoto {
+        position:relative;
+        left:50%;
+        transform: translateX(-50%);
+        border:1px solid rgb(175, 2, 117);
+        font-size:1.3rem;
+        font-weight:700;
+        border-radius:30px;
+        color: black;
+        padding: 15px 35px;
+        margin: 10px 0; 
+        display: inline-block;
+        cursor:pointer;
+        text-transform: uppercase;
+        &:hover {
+            color:white;
+            background:rgb(175, 2, 117);
+        }
+        .photoUploaded {
+            width:200px;
+            height:200px;
+            img {
+                width:100%;
+                max-height:200px;
+            }
+        }
+    }
+}
+
+
+.icon-add {
+    position:fixed;
+    right:30px;
+    bottom:30px;
+    font-size:4.5rem;
+    color:rgba(0,0,0,0.6);
+    &:hover {
+        color:rgba(0, 0, 0, 0.8);     
+    }
+}
+
+// Sign-In & Create User Form
+.form-createUser, .form-signIn {
+    position:absolute;
+    top:50%;
+    transform: translateY(-50%);
+    @extend .form-addPersonCard;
+    width:300px;
+    z-index:10;
+    h2 {
+        font-size:2.5rem;
+    }
+    .inputGroup {
+        display:flex;
+        justify-content: space-between;
+        flex-direction:column;
+        padding-bottom:20px;
+        label {
+            padding-bottom:5px;
+        }
+        input {
+            display:block;
+        }
+        input[type="password"] {
+            border-bottom:1px solid darkgrey;            
+        }
+    }
+    input[type=submit] {
+        font-size:1.5rem;
+        font-weight:700;
+        border-radius:25px;
+        color: rgb(175, 2, 117);
+        display: inline-block;
+        cursor:pointer;
+        border:1px solid rgb(175, 2, 117);
+        padding: 15px;
+        text-transform: uppercase;
+        line-height:1;
+        background:white;
+        transition:all 0.5s ease;
+        &:hover {
+            background:rgb(175, 2, 117);
+            color:white;
+        }
+    }
+    .exit-form {
+        float:right;
+        color:rgb(94, 94, 94);
+        padding:0;
+    }
+}
+
+.form-createUser {
+    .logGroup {
+        justify-content:center;
+    }
+}
+
+.btn-google {
+    font-size:1.6rem;
+    font-weight:700;
+    border-radius:50%;
+    color: rgb(175, 2, 117);
+    display: inline-block;
+    cursor:pointer;
+    text-transform: uppercase;
+    line-height:1;
+    &:hover {
+        color:white;
+    }
+}
+
+// Toggled Class for Pop-ups
+.show {
+    opacity:1;
+    left:50%;
+    top:50%;
+    transform: translate(-50%,-50%);
+    visibility: visible;
 }

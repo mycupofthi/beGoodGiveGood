@@ -4,35 +4,46 @@ class UserSignIn extends React.Component {
     constructor() {
         super();
         this.state = {
-            formToShow: '',
             createEmail: '',
             createPassword: '',
             loginEmail: '',
             loginPassword: '',
-            loggedIn: false
+            loggedIn: false,
+            user: {}
         }
         this.handleChange = this.handleChange.bind(this);
-        this.formToShow = this.formToShow.bind(this);
+        this.createShow = this.createShow.bind(this);
+        this.signInShow = this.signInShow.bind(this);        
         this.createUser = this.createUser.bind(this);
         this.signIn = this.signIn.bind(this);
         this.signOut = this.signOut.bind(this);
+        this.signInGoogle = this.signInGoogle.bind(this);
     }
 
     componentDidMount() {
         firebase.auth().onAuthStateChanged((user) => {
             if (user) {
-                this.setState({loggedIn: true});
+                this.setState({
+                    loggedIn: true,
+                    user: user
+                });
             } else {
-                this.setState({loggedIn:false});
+                this.setState({
+                    loggedIn:false,
+                });
             }
         })
     }
 
-    formToShow(e) {
+    createShow(e) {
         e.preventDefault();
-        this.setState({
-            formToShow: e.target.className
-        })
+        this.createPopup.classList.toggle("show");
+
+    }
+
+    signInShow(e) {
+        e.preventDefault();
+        this.signinPopup.classList.toggle("show");
     }
 
     handleChange(e, field) {
@@ -48,6 +59,9 @@ class UserSignIn extends React.Component {
 
         firebase.auth().createUserWithEmailAndPassword(email, password)
             .catch((error) => console.log(error.code, error.message));
+        
+            this.createPopup.classList.remove("show");
+    
     }
 
     signIn(e) {
@@ -58,63 +72,94 @@ class UserSignIn extends React.Component {
         firebase.auth().signInWithEmailAndPassword(email, password)
             .then((success) => {
                 console.log(`Logged in as ${success.email}`);
+                this.signinPopup.classList.toggle("show");
+                
             }), (error) => {
                 console.log(error);   
         };
+        this.signinPopup.classList.toggle("show");
+
+    }
+
+    signInGoogle(e) {
+        const provider = new firebase.auth.GoogleAuthProvider();
+
+        provider.setCustomParameters({
+            prompt: 'select_account'
+        });
+        firebase.auth().signInWithPopup(provider)
+            .then((user) => {
+                console.log(user);
+            })
     }
 
     signOut() {
         firebase.auth().signOut()
-            .then(function(success) {
+            .then((success)  => {
                 console.log('Signed Out!')
         }), (error) => {
             console.log(error);
         };
+        this.setState({
+            loggedIn: false,
+            user: {}
+        })
     }
     
     render() {
-        let loginForm = '';
-        if (this.state.formToShow === 'createUser') {
-            loginForm = (
-                <form onSubmit={(e) => this.createUser(e)}>
-                    <label htmlFor="email">Email:</label>
-                    <input type="text" placeholder="Please enter your email address" name="email "onChange={(e) => this.handleChange(e, "createEmail")} />
-                    <label htmlFor="password">Password:</label>
-                    <input type="password" placeholder="Please enter your desired password" name="password" onChange={(e) => this.handleChange(e, "createPassword")} />
-                    <input type="submit" value="Create User" />
-                </form>
-            );
-        } else if (this.state.formToShow === 'signIn') {
-            loginForm = (
-                <form onSubmit={(e) => this.signIn(e)}>
-                    <label htmlFor="loginEmail">Login Email:</label>
-                    <input type="text" placeholder="Please enter your email address" name="loginEmail" onChange={(e) => this.handleChange(e, "loginEmail")} />
-                    <label htmlFor="loginPassword">Login Password:</label>
-                    <input type="password" placeholder="Please enter your password" name="loginPassword" onChange={(e) => this.handleChange(e, "loginPassword")} />
-                    <input type="submit" value="Login" />
-                </form>
-            )
-        }
 
         return (
             <div>
-                <header>
-                    <nav>
-                        { this.state.loggedIn ?
-                            <div className='signOut'>
-                                <button onClick={this.signOut}>Sign Out</button>
+                <nav>
+                    { this.state.loggedIn ?
+                        <div className="splashPage-header">
+                            <div className="header-title">
+                                <h2>Be Good, Gift Good</h2>
                             </div>
-                        : 
-                            <ul>
-                                <li><a href="" className="createUser" onClick={this.formToShow}>Sign Up</a></li>
-                                <li><a href="" className="signIn" onClick={this.formToShow}>Log In</a></li>
-                                {loginForm}
-                            </ul>
-                        }
+                            <div className='signOut'>
+                                <button className="btn-signOut" onClick={this.signOut}>Sign Out</button>
+                            </div>
+                        </div>
+                    : 
+                        <ul>
+                            <li><a href="" className="createUser" onClick={this.createShow}>Sign Up</a></li>
+                            <li><a href="" className="signIn" onClick={this.signInShow}>Log In</a></li>
+                        </ul>
+                    }       
+                </nav>
+                
+                <form className="form-createUser" onSubmit={(e) => this.createUser(e)} ref={ref => this.createPopup = ref}>
+                    <button onClick={this.createShow} className="exit-form"><i className="far fa-times-circle"></i></button>
+                    <h2>Create Your User</h2>
+                    <div className="inputGroup">
+                        <label htmlFor="email">Email</label>
+                        <input type="text" placeholder="Email Address" name="email " onChange={(e) => this.handleChange(e, "createEmail")} />
+                    </div>
+                    <div className="inputGroup">
+                        <label htmlFor="password">Password</label>
+                        <input type="password" placeholder="Desired Password" name="password" onChange={(e) => this.handleChange(e, "createPassword")} />
+                    </div>
+                    <div className="logGroup">
+                        <input type="submit" value="Create User" />
+                    </div>
+                </form>
 
-                    
-                    </nav>
-                </header>
+                <form className="form-signIn" onSubmit={(e) => this.signIn(e)} ref={ref => this.signinPopup = ref}>
+                    <button onClick={this.signinShow} className="exit-form"><i className="far fa-times-circle"></i></button>
+                    <h2>Let's Sign In</h2>
+                    <div className="inputGroup">
+                        <label htmlFor="loginEmail">Email</label>
+                        <input type="text" placeholder="Email Address" name="loginEmail" onChange={(e) => this.handleChange(e, "loginEmail")} />
+                    </div>
+                    <div className="inputGroup">
+                        <label htmlFor="loginPassword">Password</label>
+                        <input type="password" placeholder="Password" name="loginPassword" onChange={(e) => this.handleChange(e, "loginPassword")} />
+                    </div>
+                    <div className="logGroup">
+                        <input type="submit" value="Login" />
+                        <button className="btn-google" onClick={this.signInGoogle}><i className="fab fa-google"></i></button>
+                    </div>
+                </form>
             </div>
         )
     }
