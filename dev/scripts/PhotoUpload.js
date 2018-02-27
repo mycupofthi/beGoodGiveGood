@@ -26,26 +26,6 @@ class PhotoUpload extends React.Component {
         this.handleSaveImage = this.handleSaveImage.bind(this);
     }
 
-componentDidMount() {
-
-    const userId = firebase.auth().currentUser.uid;
-    const dbRef = firebase.database().ref(`/users/${userId}/people/${this.props.data.personIndex}/photos`);
-    dbRef.on('value', (firebaseData) => {
-        const photoArray = [];
-        const data = firebaseData.val();
-
-        for (let i = 0; i < photoArray.length; i++) {
-            const photodata = data[i];
-                photoArray.push(photodata)
-        };
-
-        this.setState({
-            photos: photoArray
-        })
-    });
-
-}
-
     handleProgress(progress) {
         this.setState({
             photoProgress: progress
