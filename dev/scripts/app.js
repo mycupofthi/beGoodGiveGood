@@ -180,7 +180,7 @@ class App extends React.Component {
                         <h2>Let's Create Your First Person,</h2><h2> {this.state.user.displayName}!</h2>
                         <h3>Here's an example of what a card looks like!</h3>
                         <div className="noPeople-img">
-                          <img src="../assets/personCard-ex.png" alt="An example of a person card."/>
+                          <img src="../../public/assets/personCard-ex.jpg" alt="An example of a person card."/>
                         </div>
                       </div>
                   }
