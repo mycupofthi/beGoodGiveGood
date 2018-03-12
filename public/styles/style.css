@@ -142,8 +142,10 @@ body {
   height: 100vh;
   width: 100%;
   background-size: cover;
-  background-position: center;
-  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.8), white 80%), url("../assets/sweet-ice-cream-photography-435349-unsplash.jpg"); }
+  background-position: right;
+  background-image: url("../assets/plant-note.jpg");
+  background-size: 50%;
+  background-repeat: no-repeat; }
 
 h2 {
   font-size: 3rem; }
@@ -154,8 +156,8 @@ ul {
     list-style: none; }
 
 button {
-  background: none;
   border-style: none;
+  background: none;
   -moz-appearance: none;
   -webkit-appearance: none;
   border-radius: 0;
@@ -164,8 +166,8 @@ button {
 
 .wrapper {
   margin: 0 auto;
-  max-width: 1080px;
-  width: 80%; }
+  max-width: 1170px;
+  width: 90%; }
 
 @media (max-width: 555px) {
   .splashPage {
@@ -176,25 +178,37 @@ button {
   font-size: 9rem;
   margin: 0; }
   .splashPage h1:first-child {
-    padding-top: 150px;
+    padding-top: 110px;
     font-size: 8rem; }
+    @media (max-width: 768px) {
+      .splashPage h1:first-child {
+        padding-top: 70px;
+        font-size: 6rem; } }
     @media (max-width: 555px) {
       .splashPage h1:first-child {
-        padding-top: 100px;
-        font-size: 5rem; } }
+        font-size: 4rem; } }
+    @media (max-width: 480px) {
+      .splashPage h1:first-child {
+        padding-top: 50px; } }
+  @media (max-width: 768px) {
+    .splashPage h1 {
+      font-size: 5rem; } }
   @media (max-width: 555px) {
     .splashPage h1 {
-      font-size: 6rem; } }
+      font-size: 5rem; } }
 
 .splashPage .splashCaption {
   padding: 10px; }
   .splashPage .splashCaption p {
     font-size: 2.5rem;
     margin: 0; }
+    @media (max-width: 480px) {
+      .splashPage .splashCaption p {
+        font-size: 1.8rem; } }
 
 nav {
-  border-bottom: 2px solid #af0275;
-  padding: 20px 0; }
+  background: #ebebeb;
+  padding: 10px 0; }
   nav .splashPage-header {
     display: flex;
     justify-content: space-between;
@@ -228,41 +242,110 @@ nav {
         nav ul li {
           margin-left: 0; } }
     nav ul a {
-      background: rgba(255, 255, 255, 0.5);
       border-radius: 30px;
-      border: 2px solid #af0275;
       padding: 15px 35px;
-      color: #af0275;
+      color: #494949;
       text-decoration: none;
       transition: all 0.5s ease; }
       nav ul a:hover {
-        background: #af0275;
+        background: #494949;
         color: white; }
-  nav .signOut {
-    display: flex;
-    justify-content: flex-end; }
-    nav .signOut .btn-signOut {
+  nav .userTools {
+    text-align: center;
+    position: relative; }
+    nav .userTools:hover .userMenu {
+      visibility: visible;
+      opacity: 1; }
+    @media (max-width: 468px) {
+      nav .userTools {
+        margin: 0 auto; } }
+    nav .userTools .userPic {
+      width: 75px;
+      height: 75px;
+      float: right; }
+      @media (max-width: 468px) {
+        nav .userTools .userPic {
+          margin: 0 auto;
+          float: none; } }
+      nav .userTools .userPic img {
+        width: 100%;
+        border-radius: 50%; }
+    nav .userTools .userMenu {
+      visibility: hidden;
+      opacity: 0;
+      z-index: 1;
+      border-radius: 10px;
+      margin: 0;
+      clear: both;
+      padding: 10px;
+      position: absolute;
+      background: #d6d6d6;
+      right: 33px;
+      top: 80%;
+      min-width: 150px;
+      flex-direction: column;
+      justify-content: center; }
+      @media (max-width: 468px) {
+        nav .userTools .userMenu {
+          visibility: visible;
+          opacity: 1;
+          position: static;
+          background: none;
+          text-align: center; } }
+      nav .userTools .userMenu li {
+        margin: 0; }
+    nav .userTools .btn-signOut {
+      font-weight: 400;
       padding-bottom: 5px;
       font-size: 1.6rem;
-      font-weight: 700;
-      border-radius: 30px;
-      color: #af0275;
+      text-transform: none;
+      border-radius: 20px;
       display: inline-block;
       cursor: pointer;
-      border: 1px solid #af0275;
-      padding: 15px 35px;
-      text-transform: uppercase;
-      transition: all 0.5s ease; }
-      nav .signOut .btn-signOut:hover {
-        background: #af0275;
-        color: white; }
+      padding: 5px 20px;
+      transition: all 0.5s ease;
+      color: #666666; }
+      nav .userTools .btn-signOut:hover {
+        background: white;
+        color: #666666; }
+
+.noPeople {
+  text-align: center;
+  width: 450px; }
+  .noPeople h2 {
+    margin: 0;
+    color: #636363; }
+  .noPeople .noPeople-img {
+    margin: 0 auto;
+    width: 250px; }
+    .noPeople .noPeople-img img {
+      width: 100%; }
+
+.overlay {
+  visibility: hidden;
+  opacity: 0;
+  background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8));
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  text-align: right; }
+  .overlay .fa-times {
+    color: white;
+    margin: 20px;
+    font-size: 5rem; }
+    @media (max-width: 600px) {
+      .overlay .fa-times {
+        display: none; } }
 
 .icon-add {
   position: fixed;
   right: 30px;
   bottom: 30px;
   font-size: 4.5rem;
-  z-index: 15;
+  z-index: 9;
   color: rgba(0, 0, 0, 0.6);
   transition: all 0.5s ease; }
   .icon-add:hover {
@@ -276,8 +359,7 @@ nav {
   background: white;
   padding: 20px 30px;
   border-radius: 25px;
-  width: 380px;
-  box-shadow: 0px 11px 51px 6px #d0d0d0; }
+  width: 380px; }
   @media (max-width: 468px) {
     .form-addPersonCard, .form-createUser, .form-signIn {
       width: 300px; } }
@@ -309,7 +391,8 @@ nav {
   .form-addPersonCard textarea, .form-createUser textarea, .form-signIn textarea {
     background: rgba(216, 216, 216, 0.7);
     border-radius: 10px;
-    padding: 10px; }
+    padding: 10px;
+    height: 20px; }
   .form-addPersonCard .submit, .form-createUser .submit, .form-signIn .submit {
     cursor: pointer;
     position: relative;
@@ -317,10 +400,15 @@ nav {
     transform: translateX(-50%);
     font-size: 3.5rem;
     background: transparent;
-    color: #af637a;
+    color: #494949;
     transition: all 0.5s ease; }
     .form-addPersonCard .submit:hover, .form-createUser .submit:hover, .form-signIn .submit:hover {
-      color: #8a3a48; }
+      color: #2e2e2e; }
+  .form-addPersonCard .form-addPersonCard_exit, .form-createUser .form-addPersonCard_exit, .form-signIn .form-addPersonCard_exit {
+    display: none; }
+    @media (max-width: 600px) {
+      .form-addPersonCard .form-addPersonCard_exit, .form-createUser .form-addPersonCard_exit, .form-signIn .form-addPersonCard_exit {
+        display: block; } }
 
 .form-addPersonCard.show, .show.form-createUser, .show.form-signIn {
   opacity: 1;
@@ -332,17 +420,24 @@ nav {
 .peopleCards {
   padding-top: 30px;
   display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap; }
+  justify-content: space-around;
+  flex-wrap: wrap;
+  background: white; }
   .peopleCards .personCard {
-    background: white;
-    flex: 1 0 300px;
-    border-radius: 10px;
-    box-shadow: 0px 0px 59px -14px rgba(0, 0, 0, 0.69);
+    flex: 1 1 280px;
+    box-shadow: 0px 0px 59px -14px rgba(0, 0, 0, 0.8);
     padding: 20px;
-    margin: 10px;
+    margin: 20px;
     position: relative;
-    border-radius: 20px; }
+    text-align: center; }
+    @media (max-width: 468px) {
+      .peopleCards .personCard {
+        flex-basis: 350px; } }
+    .peopleCards .personCard .profile {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      position: relative; }
     .peopleCards .personCard h2.personCard-name {
       text-transform: capitalize;
       font-size: 2.5rem;
@@ -368,7 +463,7 @@ nav {
       font-size: 2.5rem;
       color: rgba(221, 3, 3, 0.281); }
       .peopleCards .personCard .remove-btn:hover {
-        color: rgba(70, 1, 1, 0.5); }
+        color: red; }
   .peopleCards .personCard-general {
     display: flex; }
     .peopleCards .personCard-general .personCard-photo img {
@@ -377,11 +472,13 @@ nav {
       padding-left: 10px; }
   .peopleCards .personCard-info {
     margin-bottom: 10px; }
+  .peopleCards #editHover {
+    cursor: pointer; }
+    .peopleCards #editHover:hover {
+      color: #464646; }
   .peopleCards .btn-uploadPhoto {
     position: relative;
-    left: 50%;
-    transform: translateX(-50%);
-    border: 1px solid #af0275;
+    border: 1px solid #494949;
     font-size: 1.3rem;
     font-weight: 700;
     border-radius: 30px;
@@ -394,20 +491,18 @@ nav {
     transition: all 0.5s ease; }
     .peopleCards .btn-uploadPhoto:hover {
       color: white;
-      background: #af0275; }
-  .peopleCards .photoUploaded {
-    width: 200px;
+      background: #494949; }
+  .peopleCards .photoUploaded, .peopleCards .photoSaved {
+    width: 100%;
     margin: 0 auto; }
-    .peopleCards .photoUploaded button {
+    .peopleCards .photoUploaded button, .peopleCards .photoSaved button {
       border-radius: 50%;
       position: relative;
-      left: 50%;
-      transform: translateX(-50%);
       padding: 10px;
       transition: all 0.5s ease; }
-      .peopleCards .photoUploaded button:hover {
-        color: #af0275; }
-    .peopleCards .photoUploaded img {
+      .peopleCards .photoUploaded button:hover, .peopleCards .photoSaved button:hover {
+        color: #494949; }
+    .peopleCards .photoUploaded img, .peopleCards .photoSaved img {
       max-height: 200px;
       width: 100%;
       object-fit: cover; }
@@ -435,17 +530,17 @@ nav {
     font-size: 1.5rem;
     font-weight: 700;
     border-radius: 25px;
-    color: #af0275;
+    color: #494949;
     display: inline-block;
     cursor: pointer;
-    border: 1px solid #af0275;
+    border: 1px solid #494949;
     padding: 15px;
     text-transform: uppercase;
     line-height: 1;
     background: white;
     transition: all 0.5s ease; }
     .form-createUser input[type=submit]:hover, .form-signIn input[type=submit]:hover {
-      background: #af0275;
+      background: #494949;
       color: white; }
   .form-createUser .exit-form, .form-signIn .exit-form {
     float: right;
@@ -467,7 +562,7 @@ nav {
   font-size: 1.6rem;
   font-weight: 700;
   border-radius: 50%;
-  color: #af0275;
+  color: #494949;
   display: inline-block;
   cursor: pointer;
   text-transform: uppercase;
@@ -483,3 +578,11 @@ nav {
   transform: translate(-50%, -50%);
   visibility: visible;
   transition: all 0.5s ease; }
+
+.flexContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; }
+  @media (max-width: 468px) {
+    .flexContainer {
+      flex-direction: column; } }

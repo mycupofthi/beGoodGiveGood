@@ -19,17 +19,19 @@ class App extends React.Component {
     super();
     this.state = {
       people: [],
-      name: '',
-      birthday: '',
-      interests: '',
-      photos: [],
       loggedIn: false,
       isButtonDisabled: false,
+      user: {},
+      name: '',
+      interests: '',
+      birthday: '',
+      photos: []
     };
     this.handleChange = this.handleChange.bind(this);
     this.addPerson = this.addPerson.bind(this);
     this.removePerson = this.removePerson.bind(this);
     this.showAddPerson = this.showAddPerson.bind(this);
+    this.removeOverlay = this.removeOverlay.bind(this);
   }
 
   componentDidMount() {
@@ -46,7 +48,8 @@ class App extends React.Component {
           }
           this.setState({
             people: peopleArray,
-            loggedIn: true
+            loggedIn: true,
+            user: user
           });
         });
       } else {
@@ -67,6 +70,12 @@ class App extends React.Component {
   showAddPerson(e) {
     e.preventDefault();
     this.addPersonCard.classList.toggle("show");
+    this.addOverlay.classList.add("show");
+  }
+
+  removeOverlay() {
+    this.addPersonCard.classList.remove("show");
+    this.addOverlay.classList.remove("show");    
   }
 
   addPerson(e) {
@@ -82,6 +91,7 @@ class App extends React.Component {
 
     dbRef.push(person);
     this.addPersonCard.classList.remove("show");
+    this.addOverlay.classList.remove("show");        
     
     this.setState({
       name: '',
@@ -101,6 +111,9 @@ class App extends React.Component {
     if (this.state.loggedIn) {
       inputForm = (
         <section className="form-addPersonCard" ref={ref => this.addPersonCard = ref}>
+          <button className="form-addPersonCard_exit" onClick={this.removeOverlay}>
+            <i className="fas fa-times"></i>
+          </button>
           <h3>Cool, you want to add someone! Let's make their gifts as great as they are.</h3>
           <form onSubmit={this.addPerson}>
             <div className="inputGroup">
@@ -112,8 +125,8 @@ class App extends React.Component {
               <input type="date" value={this.state.birthday} id="birthday" onChange={this.handleChange} />
             </div>
             <div className="inputGroup">
-              <label htmlFor="interests">Interests</label>
-              <textarea name="interests" value={this.state.interests} id="interests" cols="10" rows="5" onChange={this.handleChange} id="interests" placeholder="What Do They Like?"></textarea>
+              <label htmlFor="interests">Interests or Special Notes</label>
+              <textarea name="interests" value={this.state.interests} id="interests" cols="10" rows="2" onChange={this.handleChange} id="interests" placeholder="What Do They Like?"></textarea>
             </div>
             <button className="submit" disabled={!this.state.name || !this.state.birthday && !this.state.interests}><i className="fas fa-check-circle"></i></button>
           </form>
@@ -121,40 +134,60 @@ class App extends React.Component {
       );
     } else {
       inputForm = (
-        <div className="splashPage">
-          <h1>Be Good,</h1>
-          <h1>Gift Good</h1>
-          <div className="splashCaption">
-            <p>Make gifts as great as the people in your life are.</p>
-            <p>Make notes when the special gift idea comes up!</p>
+        <div className="background">
+          <div className="splashPage">
+            <h1>Be Good,</h1>
+            <h1>Gift Good</h1>
+            <div className="splashCaption">
+              <p>Make gifts as great as the people in your life are.</p>
+              <p>Make notes when the special gift idea comes up!</p>
+            </div>
           </div>
         </div>
       );  
     }
     return (
       <div>
-        <div className="background">
           <header>
-            <div className="wrapper">
               <UserSignIn />
-              { this.state.loggedIn 
-              ? <div>
-                  <a href="" onClick={this.showAddPerson} className="icon-add"><i className="fas fa-plus-circle"></i></a>
-                </div>
-              : null}
-              {inputForm}
-            </div>
+              <div className="wrapper">
+              
+                { this.state.loggedIn 
+                ? <div>
+                    <a href="" onClick={this.showAddPerson} className="icon-add"><i className="fas fa-plus-circle"></i></a>
+                  </div>
+                : null}
+                  <div className="overlay" ref={ref => this.addOverlay = ref}>
+                    <button onClick={this.removeOverlay}>
+                      <i className="fas fa-times"></i>
+                    </button>
+                  </div>
+                  {inputForm}
+              </div>
           </header>
           <main>
             <div className="wrapper">
-              <section className="peopleCards">
-                {this.state.people.map((person) => {
-                  return <PersonCard data={person} key={person.key} remove={this.removePerson} personIndex={person.key} />
-                })}
-              </section>
+              { this.state.loggedIn 
+              ? <section className="peopleCards">
+                  { (this.state.people.length > 0)
+                    ? <React.Fragment>
+                        {this.state.people.map((person) => {
+                          return <PersonCard data={person} key={person.key} remove={this.removePerson} personIndex={person.key} />
+                        })}
+                      </React.Fragment>
+                    : 
+                      <div className="noPeople">
+                        <h2>Let's Create Your First Person,</h2><h2> {this.state.user.displayName}!</h2>
+                        <h3>Here's an example of what a card looks like!</h3>
+                        <div className="noPeople-img">
+                          <img src="../assets/personCard-ex.png" alt="An example of a person card."/>
+                        </div>
+                      </div>
+                  }
+                </section>
+              : null}
             </div>
           </main>
-        </div>
       </div>
     )
   }

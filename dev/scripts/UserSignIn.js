@@ -91,7 +91,6 @@ class UserSignIn extends React.Component {
             .then((user) => {
                 console.log(user);
             })
-
     }
 
     signOut() {
@@ -114,18 +113,28 @@ class UserSignIn extends React.Component {
                 <nav>
                     { this.state.loggedIn ?
                         <div className="splashPage-header">
-                            <div className="header-title">
-                                <h2>Be Good, Gift Good</h2>
-                            </div>
-                            <div className='signOut'>
-                                <button className="btn-signOut" onClick={this.signOut}>Sign Out</button>
+                            <div className="wrapper flexContainer">
+                                <div className="header-title">
+                                    <h2>Be Good, Gift Good</h2>
+                                </div>
+                                <div className="userTools">
+                                    <div className="userPic clearfix">
+                                        <img src={this.state.user.photoURL} alt=""/>
+                                    </div>
+                                    <ul className="userMenu">
+                                        <li>{this.state.user.displayName}</li>
+                                        <li><button className="btn-signOut" onClick={this.signOut}>Sign Out</button></li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     : 
-                        <ul>
-                            <li><a href="" className="createUser" onClick={this.createShow}>Sign Up</a></li>
-                            <li><a href="" className="signIn" onClick={this.signInShow}>Log In</a></li>
-                        </ul>
+                        <div className="wrapper">
+                            <ul>
+                                <li><a href="" className="createUser" onClick={this.createShow}>Sign Up</a></li>
+                                <li><a href="" className="signIn" onClick={this.signInShow}>Log In</a></li>
+                            </ul>
+                        </div>
                     }       
                 </nav>
 
@@ -135,7 +144,7 @@ class UserSignIn extends React.Component {
                     <h2>Create Your User</h2>
                     <div className="inputGroup">
                         <label htmlFor="email">Email</label>
-                        <input type="text" placeholder="Email Address" name="email " onChange={(e) => this.handleChange(e, "createEmail")} />
+                        <input type="email" placeholder="Email Address" name="email " onChange={(e) => this.handleChange(e, "createEmail")} />
                     </div>
                     <div className="inputGroup">
                         <label htmlFor="password">Password</label>
@@ -151,7 +160,7 @@ class UserSignIn extends React.Component {
                     <h2>Let's Sign In</h2>
                     <div className="inputGroup">
                         <label htmlFor="loginEmail">Email</label>
-                        <input type="text" placeholder="Email Address" name="loginEmail" onChange={(e) => this.handleChange(e, "loginEmail")} />
+                        <input type="email" placeholder="Email Address" name="loginEmail" onChange={(e) => this.handleChange(e, "loginEmail")} />
                     </div>
                     <div className="inputGroup">
                         <label htmlFor="loginPassword">Password</label>
