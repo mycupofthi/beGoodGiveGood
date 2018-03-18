@@ -47,17 +47,17 @@ class PersonCard extends React.Component {
             editInterests: false,
         })
     }
+
     render() {
-        
         // Birthday Edit
         let editBirthday = (
             <div>
-            { moment(new Date(this.props.data.birthday)).utc().format('MMMM D') }
+                {moment(new Date(this.props.data.birthday)).utc().format('MMMM D')} <i className="fas fa-pencil-alt"></i>
             </div>
         )
         let newBirthday = (
             <div>
-                <p>To Be Soon Dated</p>
+                <p>To Be Dated Soon <i className="fas fa-pencil-alt"></i></p>
             </div>
         )
         if (this.state.editBirthday) {
@@ -76,8 +76,8 @@ class PersonCard extends React.Component {
         }
 
         // Interests Iedit
-        let editInterests = (<div> {this.props.data.interests} </div>)
-        let newInterests = (<div><p>To Be Soon Announced</p></div>)
+        let editInterests = (<div> {this.props.data.interests} <i className="fas fa-pencil-alt"></i></div>)
+        let newInterests = (<div><p>To Be Announced Soon<i className="fas fa-pencil-alt"></i></p></div>)
         if (this.state.editInterests) {
             editInterests = (
                 <form onSubmit={this.saveInterests}>

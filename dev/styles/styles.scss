@@ -221,6 +221,7 @@ nav {
 .noPeople {
     text-align:center;
     width:450px;
+    margin:0 auto;
     h2 {
         margin:0;
         color:rgb(99, 99, 99);
@@ -347,19 +348,24 @@ nav {
 // People Cards
 .peopleCards {
     padding-top:30px;
-    display:flex;
-    justify-content: space-around;
-    flex-wrap:wrap;
     background:white;
+    column-count:3;
+    @media (max-width: 1200px) {
+        column-count: none;
+        display:flex;
+        justify-content: center;
+        flex-wrap:wrap;
+    }
     .personCard {
-        flex:1 1 280px;
+        display:inline-block;
+        width:350px;
         box-shadow: 0px 0px 59px -14px rgba(0,0,0,0.8);
         padding:20px;   
         margin:20px;
         position:relative;
-        text-align: center;
-        @media (max-width: 468px) {
-            flex-basis:350px;
+        text-align: center; 
+        @media (max-width: 1200px) {
+            flex-basis:300px;
         }
         .profile {
             width:100%;
@@ -411,13 +417,36 @@ nav {
             padding-left:10px;
         }
     }
-    .personCard-info {
+    .personCard-photogallery {
         margin-bottom:10px;
     }
+    .flickity-prev-next-button {
+  width: 10px;
+  height: 10px;
+  padding:5px;
+  background:lightgrey;
+}
+.flickity-prev-next-button.previous {
+  left: -40px;
+}
+.flickity-prev-next-button.next {
+  right: -40px;
+}
+    .fa-pencil-alt {
+        display:none;
+    }
+
     #editHover {
         cursor:pointer;
         &:hover {
             color:rgb(70, 70, 70);
+            .fa-pencil-alt {
+                display:inline-block;
+                position:absolute;
+                right:9%;
+                color:rgb(99, 99, 99);
+                font-size:1.4rem;
+            }
         }
     }
     .btn-uploadPhoto {

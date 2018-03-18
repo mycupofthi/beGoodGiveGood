@@ -13,6 +13,7 @@ var config = {
 };
 firebase.initializeApp(config);
 
+
 class PhotoUpload extends React.Component {
     constructor() {
         super();
@@ -21,13 +22,13 @@ class PhotoUpload extends React.Component {
             photoURL: '',
             isUploading: false,
             photoProgress:0,
-            photoKeyArray: [],
+            progress: '',
             photosArray: []
         };
         this.handleUploadSuccess = this.handleUploadSuccess.bind(this);
-        this.removeImage = this.removeImage.bind(this);                
+        this.removeImage = this.removeImage.bind(this);             
     }
-
+    
     componentDidMount() {
         const photos = [];
         const userId = firebase.auth().currentUser.uid;
@@ -35,14 +36,14 @@ class PhotoUpload extends React.Component {
         dbRef.on('value', (snapshot) => {
             const photos = snapshot.val();
             const photoArray = [];
-            const photoKeys = [];
+
             for (let photoKey in photos) {
                 photoArray.push(photos[photoKey])
-                photoKeys.push([photoKey])
+                photos[photoKey].key = photoKey
             }
+
             this.setState({
-                photosArray: photoArray,
-                photoKeyArray: photoKeys
+                photosArray: photoArray
             })
         })
     }
@@ -64,7 +65,11 @@ class PhotoUpload extends React.Component {
             .then((url) => {
                 const userId = firebase.auth().currentUser.uid;
                 const dbRef = firebase.database().ref(`/users/${userId}/people/${this.props.data.personIndex}/photos`);
-                dbRef.push(url);
+                const photo = {
+                    photoURL: url
+                }
+                dbRef.push(photo);
+                if (this.refs.myRef)
                 this.setState({
                     photoURL: url
                 })
@@ -75,6 +80,7 @@ class PhotoUpload extends React.Component {
                 })
             }
     }
+
     removeImage(photoKey) {
         const userId = firebase.auth().currentUser.uid;
         const dbRef = firebase.database().ref(`/users/${userId}/people/${this.props.data.data.key}/photos/${photoKey}`);
@@ -83,24 +89,24 @@ class PhotoUpload extends React.Component {
 
     render() {
         return (
-            <React.Fragment>
+            <div>
                 <div className="photoUploaded">
                     { this.state.photosArray.length > 0 ? 
-                    <React.Fragment>
-                            <li className="personCard-info">{this.state.photosArray.map((data,i) => {
-                                return (
-                                    <div className="photoSaved">
-                                        <img src={data}/>
-                                        <button onClick={() => this.removeImage(this.state.photoKeyArray)}>Remove</button>
-                                    </div>
-                                )
-                            })}</li>
-                       </React.Fragment>
+                           <div>
+                               {this.state.photosArray.map((data,i) => {
+                                    return (
+                                        <div className="photoSaved" key={data.key}>
+                                            <img src={data.photoURL}/>
+                                            <button onClick={() => this.removeImage(data.key)}>Remove</button>
+                                        </div>
+                                    )
+                                })}
+                           </div>
                     : <p>Will be up soon!</p> }
                 </div>
                 <label className="btn-uploadPhoto">Upload Photo
                 <FileUploader accept ="image/*" name="photo" randomizeFilename storageRef={firebase.storage().ref('images')} onUploadSuccess={this.handleUploadSuccess} hidden /></label>
-            </React.Fragment>
+            </div>
         )
     }
 }

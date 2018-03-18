@@ -172,7 +172,7 @@ class App extends React.Component {
                   { (this.state.people.length > 0)
                     ? <React.Fragment>
                         {this.state.people.map((person) => {
-                          return <PersonCard data={person} key={person.key} remove={this.removePerson} personIndex={person.key} />
+                          return <PersonCard data={person} key={person.key} remove={this.removePerson} personIndex={person.key}/>
                         })}
                       </React.Fragment>
                     : 

@@ -311,7 +311,8 @@ nav {
 
 .noPeople {
   text-align: center;
-  width: 450px; }
+  width: 450px;
+  margin: 0 auto; }
   .noPeople h2 {
     margin: 0;
     color: #636363; }
@@ -418,20 +419,25 @@ nav {
 
 .peopleCards {
   padding-top: 30px;
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  background: white; }
+  background: white;
+  column-count: 3; }
+  @media (max-width: 1200px) {
+    .peopleCards {
+      column-count: none;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap; } }
   .peopleCards .personCard {
-    flex: 1 1 280px;
+    display: inline-block;
+    width: 350px;
     box-shadow: 0px 0px 59px -14px rgba(0, 0, 0, 0.8);
     padding: 20px;
     margin: 20px;
     position: relative;
     text-align: center; }
-    @media (max-width: 468px) {
+    @media (max-width: 1200px) {
       .peopleCards .personCard {
-        flex-basis: 350px; } }
+        flex-basis: 300px; } }
     .peopleCards .personCard .profile {
       width: 100%;
       height: 200px;
@@ -469,12 +475,29 @@ nav {
       border-radius: 50%; }
     .peopleCards .personCard-general .personCard-bg {
       padding-left: 10px; }
-  .peopleCards .personCard-info {
+  .peopleCards .personCard-photogallery {
     margin-bottom: 10px; }
+  .peopleCards .flickity-prev-next-button {
+    width: 10px;
+    height: 10px;
+    padding: 5px;
+    background: lightgrey; }
+  .peopleCards .flickity-prev-next-button.previous {
+    left: -40px; }
+  .peopleCards .flickity-prev-next-button.next {
+    right: -40px; }
+  .peopleCards .fa-pencil-alt {
+    display: none; }
   .peopleCards #editHover {
     cursor: pointer; }
     .peopleCards #editHover:hover {
       color: #464646; }
+      .peopleCards #editHover:hover .fa-pencil-alt {
+        display: inline-block;
+        position: absolute;
+        right: 9%;
+        color: #636363;
+        font-size: 1.4rem; }
   .peopleCards .btn-uploadPhoto {
     position: relative;
     border: 1px solid #494949;
